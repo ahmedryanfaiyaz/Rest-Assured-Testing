@@ -4,6 +4,8 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 
+import static io.restassured.RestAssured.given;
+
 public class TestExamples {
     @Test
     void test_01() {
@@ -39,5 +41,16 @@ public class TestExamples {
         int statusCode = response.getStatusCode();
 
         Assert.assertEquals(statusCode, 200);
+    }
+
+    @Test
+    void test_03() {
+        given().
+                param("x","y").
+        when().
+                get("https://reqres.in/api/users?page=1").
+        then().
+                statusCode(200);
+
     }
 }
